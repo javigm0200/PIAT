@@ -1,1 +1,91 @@
-<?xml version = "1.0" ?>
+<?xml version = "1.0" encoding= "UTF-8"?>
+<mision>
+    <identificación codigoMision = "M123ab">
+        <descripción>
+            La misión consiste en <keyword> reparar </keyword> una <keyword> conexión </keyword> de <keyword> una torre demedia tensión </keyword> del Campus Sur.
+        </descripción>
+
+    </identificación>
+
+    <dron matriculaDron="99999">
+        <claseDron>autonomo 5</claseDron>
+        <homologaciones>
+            <nacional>Madrid</nacional>
+            <internacional>España</internacional>
+        </homologaciones>
+        <configuracionDron>
+            <sensores>
+                <numeroSensores>2</numeroSensores>
+                <sensor idSensor="SEN1-sm">
+                    <elementoSensado>salinidad del agua</elementoSensado>
+                    <rango>1.5 15.75 5</rango>
+
+                </sensor>
+                <sensor idSensor="SEN2-sm">
+                    <elementoSensado>salinidad del agua</elementoSensado>
+                    <rango>1.5 15.75 5</rango>
+                </sensor>
+            </sensores>
+        </configuracionDron>
+
+    </dron>
+    <dron matriculaDron="99998">
+        <actuadores>
+            <numeroActuadores>2</numeroActuadores>
+            <actuador idActuador="AC$03">
+                <alcanceActuacion>
+                    <tipoActuacion>actuacionBosque</tipoActuacion>
+                    <fechasActuacion>2022-07-02 2022-05-20</fechasActuacion>
+                </alcanceActuacion>
+            
+            </actuador>
+            <actuador idActuador="AC$04">
+                <alcanceActuacion>
+                    <tipoActuacion>actuacionMontaña</tipoActuacion>
+                    <fechasActuacion>2022-08-02 2021-05-20</fechasActuacion>
+                </alcanceActuacion>
+            </actuador>
+        </actuadores>
+
+    </dron>
+    <tarea idTarea="TAR-00001">
+        <descripcionTarea>cuidado</descripcionTarea>
+        <responsableTarea>
+            <email>javiv@gmail.com</email>
+            <url>https://upm.es</url>
+        </responsableTarea>
+        <dronesTarea>
+            <matricula>99998</matricula>
+            <actividadMision>limpiar de manera adecuada</actividadMision>
+        </dronesTarea>
+        <areaGeografica>
+            <centro>
+                <longitud>19,08</longitud>
+                <latitud>20,56</latitud>
+            </centro>
+            <profundidad>5 10</profundidad>
+            <forma>cilindro</forma>
+        </areaGeografica>
+    </tarea>
+    
+    <tarea idTarea="TAR-00002">
+        <descripcionTarea>mantenimiento</descripcionTarea>
+        <responsableTarea>
+            <email>javiv@gmail.com</email>
+            <url>https://upm.es</url>
+        </responsableTarea>
+        <dronesTarea>
+            <matricula>99999</matricula>
+            <actividadMision>limpiar de manera rapida</actividadMision>
+        </dronesTarea>
+        <areaGeografica>
+            <centro>
+                <longitud>194,08</longitud>
+                <latitud>200,56</latitud>
+            </centro>
+            <profundidad>5 15</profundidad>
+            <forma>esfera</forma>
+        </areaGeografica>
+    </tarea>
+    
+</mision>

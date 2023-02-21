@@ -1,1 +1,14 @@
-<?xml version = "1.0" ?>
+<?xml version = "1.0" encoding= "UTF-8"?>
+<documentoMision>
+    <metadatos>
+        <identificacion version="50ab"/>
+        <propietario>
+            <nombrePR>javier</nombrePR>
+            <contacto identificadorFiscal="00098662A">
+                <email>javiv@gmail.com</email>
+                <url>https://javi.com</url>
+            </contacto>
+        </propietario>
+    </metadatos>
+    <datosMision></datosMision>
+</documentoMision>
