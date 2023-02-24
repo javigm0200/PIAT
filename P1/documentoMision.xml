@@ -10,5 +10,24 @@
             </contacto>
         </propietario>
     </metadatos>
-    <datosMision></datosMision>
+    <datosMision idDM="1111">
+        <descripcionDM>
+            la mision consiste en <b>poner palabras</b> en <b><i>negrita y cursiva</i></b>
+        </descripcionDM>
+        <formatoDatos>JSON</formatoDatos>
+        <lenguaje>W3C</lenguaje>
+        <fecha>2022-07-23</fecha>
+        <![CDATA[<datosSensores>datos sensores</datosSensores>]]>
+        <![CDATA[<datosActuadores>datos actuadores</datosActuadores>]]>
+        <imagenes idImagen="IMAG01">
+            <datosImagen>
+                <dimensiones>
+                    <ancho>22</ancho>
+                    <alto>0,7</alto>
+                </dimensiones>
+                <descripcion>mision importante en xml</descripcion>
+                <contenido formato="GIF"></contenido>
+            </datosImagen>
+        </imagenes>
+    </datosMision>
 </documentoMision>
