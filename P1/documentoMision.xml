@@ -20,7 +20,7 @@
         <![CDATA[<datosSensores>datos sensores</datosSensores>]]>
         <![CDATA[<datosActuadores>datos actuadores</datosActuadores>]]>
         <imagenes idImagen="IMAG01">
-            <datosImagen>
+            <datosImagen> 
                 <dimensiones>
                     <ancho>22</ancho>
                     <alto>0,7</alto>
