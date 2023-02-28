@@ -15,3 +15,6 @@ Ejemplo:
 
 
 Base 64 binary para convertir fotos a texto y que lo pueda leer el xml
+
+Fase 2 de PIAT:
+El documento tipoIdentificacion contendrá datos de identificación, los elementos que van a colgar directamente de Schema van a ser complexType o simpleType. Va a colgar un element.
