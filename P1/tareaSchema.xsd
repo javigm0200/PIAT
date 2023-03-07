@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    targetNamespace="http://www.piat.upm.es/tareaSchema"
+    xmlns:tns="http://www.piat.upm.es/tareaSchema" 
+    elementFormDefault="qualified">
+
+<xsd:complexType name="tipoTarea">
+    <xsd:sequence>
+        <xsd:element name="descripcionTarea" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+        <xsd:element name="responsableTarea" minOccurs="0">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <!-- Falta hacerlo único -->
+                    <xsd:element name="email" minOccurs="0" maxOccurs="unbounded" type="xsd:string"></xsd:element>
+                    <xsd:element name="url" minOccurs="0" maxOccurs="unbounded" type="xsd:anyURI"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="dronesTarea" minOccurs="1" maxOccurs="unbounded">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="matricula" type="xsd:string"></xsd:element>
+                    <xsd:element name="actividadMision" type="xsd:string"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="areaGeografica">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="centro" type="tns:tipoareaGeografica"></xsd:element>
+                    <xsd:element name="profundidad" type="xsd:double" minOccurs="3" maxOccurs="3">
+                    </xsd:element>
+                    <xsd:element name="forma" type="tns:tforma"></xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="idTarea" type="tns:tidTarea"></xsd:attribute>
+</xsd:complexType>
+
+<xsd:complexType name="tipoareaGeografica">
+    <xsd:sequence>
+        <xsd:element name="longitud" type="xsd:double"></xsd:element>
+        <xsd:element name="latitud" type="xsd:double"></xsd:element>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:simpleType name="tforma">
+    <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="esfera"></xsd:enumeration>
+        <xsd:enumeration value="cilindro"></xsd:enumeration>
+        <xsd:enumeration value="paralelepípedo"></xsd:enumeration>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="tidTarea">
+    <xsd:restriction base="xsd:string">
+        <xsd:pattern value="[TAR]-[-]-[1-9]{5}"></xsd:pattern>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<!-- Preguntar al profesor -->
+
+<!-- <xsd:simpleType name="tprofundidad">
+    <xsd:restriction base="xsd:double">
+        <xsd:length value="3"></xsd:length>
+    </xsd:restriction>
+</xsd:simpleType> -->
+
+
+</xsd:schema>

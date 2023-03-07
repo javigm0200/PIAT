@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
     targetNamespace="http://www.piat.upm.es/dronSchema"
-    xmlns:tns="http://www.piat.upm.es/dronSchema" 
+    xmlns:tns="http://www.piat.upm.es/dronSchema"
+    xmlns:act="http://www.practica1.upm.es/actuadoresSchema"
+    xmlns:sen="http://www.practica1.upm.es/sensoresSchema"
     elementFormDefault="qualified">
 
     <xsd:import namespace="http://www.practica1.upm.es/sensoresSchema" schemaLocation="./sensoresSchema.xsd"/>
-    
+    <xsd:import namespace="http://www.practica1.upm.es/sensoresSchema" schemaLocation="./actuadoresSchema.xsd"/>
+
+
+    <xsd:element name="dronSchema">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="sensoresSchema" type="act:tactuadores"></xsd:element>
+                <xsd:element name="actuadoresSchema" type="sen:tactuador"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
 </xsd:schema>

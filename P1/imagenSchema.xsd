@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    targetNamespace="http://www.piat.upm.es/sensoresSchema"
+    xmlns:tns="http://www.piat.upm.es/sensoresSchema" 
+    elementFormDefault="qualified">
+
+    <xsd:complexType name="timagen">
+        <xsd:sequence>
+            <xsd:element name="datosImagen" minOccurs="1" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="dimensiones">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="alto" type="xsd:double" minOccurs="1" maxOccurs="1" ></xsd:element>
+                                    <xsd:element name="ancho" type="xsd:double" minOccurs="1" maxOccurs="1"></xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="descripcion" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+                        <xsd:element name="contenido" minOccurs="1" maxOccurs="1">
+                        </xsd:element>
+                    </xsd:sequence>
+                    <xsd:attribute name="formato" type="tns:tformato" use="required"></xsd:attribute>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="idImagen" type="tns:tidImagen" use="required"></xsd:attribute>
+    </xsd:complexType>
+
+
+    <xsd:simpleType name="tidImagen">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[IMAG]-[0-9]{2}"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="tformato">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="GIF"></xsd:enumeration>
+            <xsd:enumeration value="JPEG"></xsd:enumeration>
+            <xsd:enumeration value="PNG"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+</xsd:schema>
