@@ -4,13 +4,12 @@
     xmlns:tns="http://www.piat.upm.es/sensoresSchema" 
     elementFormDefault="qualified">
 
-<xsd:element name="sensores">
-    <xsd:complexType>
+
+    <xsd:complexType name="tsensores">
         <xsd:sequence>
             <xsd:element name= "numeroSensores" type="xsd:integer" minOccurs="1" maxOccurs="1"></xsd:element>
         </xsd:sequence>
     </xsd:complexType>
-</xsd:element>
 
 <xsd:element name="sensor">
     <xsd:complexType>

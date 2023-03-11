@@ -2,20 +2,57 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
     targetNamespace="http://www.piat.upm.es/dronSchema"
     xmlns:tns="http://www.piat.upm.es/dronSchema"
-    xmlns:act="http://www.practica1.upm.es/actuadoresSchema"
-    xmlns:sen="http://www.practica1.upm.es/sensoresSchema"
+    xmlns:act="http://www.piat.upm.es/actuadoresSchema"
+    xmlns:sen="http://www.piat.upm.es/sensoresSchema"
     elementFormDefault="qualified">
 
-    <xsd:import namespace="http://www.practica1.upm.es/sensoresSchema" schemaLocation="./sensoresSchema.xsd"/>
-    <xsd:import namespace="http://www.practica1.upm.es/sensoresSchema" schemaLocation="./actuadoresSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/sensoresSchema" schemaLocation="./sensoresSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/actuadoresSchema" schemaLocation="./actuadoresSchema.xsd"/>
 
 
-    <xsd:element name="dronSchema">
+    <xsd:element name="dron">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="sensoresSchema" type="act:tactuadores"></xsd:element>
-                <xsd:element name="actuadoresSchema" type="sen:tactuador"></xsd:element>
+                <xsd:element name="sensores" type="sen:tsensores"></xsd:element>
+                <xsd:element name="actuadores" type="act:tactuadores"></xsd:element>
+                <xsd:element name="claseDron" minOccurs="1" maxOccurs="1" type="tns:tclaseDron"></xsd:element>
+                <xsd:element name="homologaciones" type="tns:thomologaciones"></xsd:element>
+                <xsd:element name="configuracionDron" type="tns:tconfiguracionDron"></xsd:element>
             </xsd:sequence>
         </xsd:complexType>
+        
+        <xsd:key name="claveActuador">
+            <xsd:selector xpath="./act:actuadores"></xsd:selector>
+            <xsd:field xpath="@idActuador"></xsd:field>
+        </xsd:key>
+        <xsd:key name="claveSensor">
+            <xsd:selector xpath="./act:sensores"></xsd:selector>
+            <xsd:field xpath="@idSensor"></xsd:field>
+        </xsd:key>
+
     </xsd:element>
+
+    
+    <xsd:simpleType name="tclaseDron">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="autónomo"></xsd:enumeration>
+            <xsd:enumeration value="controlado"></xsd:enumeration>
+            <xsd:enumeration value="monitorizado"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="thomologaciones">
+        <xsd:choice minOccurs="1" maxOccurs="unbounded">
+            <xsd:element name="nacional" type="xsd:string"></xsd:element>
+            <xsd:element name="internacional" type="xsd:string"></xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType name="tconfiguracionDron">
+        <xsd:sequence>
+            <xsd:element name="sensor" type="sen:tsensores"></xsd:element>
+            <xsd:element name="actuador" type="act:tactuador"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
 </xsd:schema>

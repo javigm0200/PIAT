@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    targetNamespace="http://www.piat.upm.es/documentoMisionSchema"
+    xmlns:tns="http://www.piat.upm.es/documentoMisionSchema"
+    xmlns:ima="http://www.piat.upm.es/imagenSchema"
+    xmlns:pro="http://www.piat.upm.es/propietarioSchema"
+    elementFormDefault="qualified">
+
+    <xsd:import namespace="http://www.piat.upm.es/imagenSchema" schemaLocation="./imagenSchema.xsd"></xsd:import>
+    <xsd:import namespace="http://www.piat.upm.es/propietarioSchema" schemaLocation="./propietarioSchema.xsd"></xsd:import>
+
+    <xsd:complexType name="documentoMision">
+        <xsd:sequence>
+            <xsd:element name="metadatos" type="tns:tmetadatos"></xsd:element>
+            <xsd:element name="datosMision" minOccurs="1" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="descripcionDM" type="xsd:string"></xsd:element>
+                        <xsd:element name="formatoDatos" type="tns:tformatoDatos"></xsd:element>
+                        <xsd:element name="lenguaje" type="tns:tlenguaje"></xsd:element>
+                        <xsd:element name="fecha" type="xsd:date"></xsd:element>
+                        <xsd:element name="datosSensores" type="xsd:string"></xsd:element>
+                        <xsd:element name="datosActuadores" type="xsd:string"></xsd:element>
+                        <xsd:element name="imagenes" type="ima:timagen"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="tmetadatos">
+        <xsd:sequence>
+            <xsd:element name="identificacion" type="tns:tIdentificacion">
+            </xsd:element>
+            <xsd:element name="propietario" type="pro:tpropietario"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="tversion">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-Z0-9]{4}"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="tIdentificacion">
+        <xsd:simpleContent>
+				    <xsd:extension base="xsd:string">
+					    <xsd:attribute name="version" type="tns:tversion" use="required"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="tformatoDatos">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="XML"></xsd:enumeration>
+            <xsd:enumeration value="JSON"></xsd:enumeration>
+            <xsd:enumeration value="XSLX"></xsd:enumeration>
+            <xsd:enumeration value="CSV"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="tlenguaje">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="W3C"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

@@ -5,21 +5,15 @@
     xmlns:ids="http://www.piat.upm.es/identificacionSchema" 
     elementFormDefault="qualified">
 
-    <xsd:import namespace="http://www.practica1.upm.es/identificacionSchema" schemaLocation="./identificacionSchema.xsd"/>
-    <xsd:import namespace="http://www.practica1.upm.es/dronSchema" schemaLocation="./dronSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/identificacionSchema" schemaLocation="./identificacionSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/dronSchema" schemaLocation="./dronSchema.xsd"/>
 
-    <xsd:element name="misionSchema">
+    <xsd:element name="mision">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="identificacion" type="tns:tidentificacion" minOccurs="1" maxOccurs="1"></xsd:element>
+                <!-- <xsd:element name="identificacion" type="tns:tIdentificacion" minOccurs="1" maxOccurs="1"></xsd:element> -->
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
-
-    <xsd:complexType name="tidentificacion">
-        <xsd:sequence>
-            <xsd:element></xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
 
 </xsd:schema>

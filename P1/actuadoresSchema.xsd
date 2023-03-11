@@ -4,15 +4,15 @@
     xmlns:tns="http://www.piat.upm.es/actuadoresSchema" 
     elementFormDefault="qualified">
 
-<xsd:element name="tactuadores">
-    <xsd:complexType>
+
+    <xsd:complexType name="tactuadores">
         <xsd:sequence>
             <xsd:element name="numeroActuadores" type="xsd:integer"></xsd:element>
             <xsd:element name="actuador" minOccurs="1" maxOccurs="unbounded" type="tns:tactuador"></xsd:element>
         </xsd:sequence>
         <xsd:attribute name="idActuador" type="tns:tidActuador" use="required"></xsd:attribute>
     </xsd:complexType>
-</xsd:element>
+
 
 <xsd:simpleType name="tidActuador">
     <xsd:restriction base="xsd:string">
