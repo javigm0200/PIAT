@@ -1,34 +1,57 @@
 <?xml version = "1.0" encoding= "UTF-8"?>
-<mision>
-    <identificación codigoMision = "M123ab">
-        <descripción>
+<tns:mision xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ide="http://www.piat.upm.es/identificacionSchema"
+    xmlns:dro="http://www.piat.upm.es/dronSchema"
+    xmlns:sen="http://www.piat.upm.es/sensoresSchema"
+    xmlns:act="http://www.piat.upm.es/actuadoresSchema"
+    xmlns:tar="http://www.piat.upm.es/tareaSchema"
+    xmlns:tns="http://www.piat.upm.es/misionSchema"
+    xsi:schemaLocation="http://www.piat.upm.es/misionSchema ./misionSchema.xsd">
+
+    <tns:identificacion codigoMision = "M123ab">
+        <ide:descripcion>
             La misión consiste en <keyword> reparar </keyword> una <keyword> conexión </keyword> de <keyword> una torre demedia tensión </keyword> del Campus Sur.
-        </descripción>
+        </ide:descripcion>
 
-    </identificación>
+    </tns:identificacion>
 
-    <dron matriculaDron="99999">
-        <claseDron>autonomo 5</claseDron>
-        <homologaciones>
-            <nacional>Madrid</nacional>
-            <internacional>España</internacional>
-        </homologaciones>
-        <configuracionDron>
-            <sensores>
-                <numeroSensores>2</numeroSensores>
-                <sensor idSensor="SEN1-sm">
-                    <elementoSensado>salinidad del agua</elementoSensado>
-                    <rango>1.5 15.75 5</rango>
+    <tns:drones>
+        <tns:dron matriculaDron="99999">
+            <dro:claseDron>autonomo 5</dro:claseDron>
+            <dro:homologaciones>
+                <dro:nacional>Madrid</dro:nacional>
+                <dro:internacional>España</dro:internacional>
+            </dro:homologaciones>
+            <dro:configuracionDron>
+                <dro:sensores>
+                    <sen:numeroSensores>2</sen:numeroSensores>
+                    <sen:sensor idSensor="SEN1-sm">
+                        <sen:elementoSensado>salinidad del agua</sen:elementoSensado>
+                        <sen:rango>1.5 15.75 5</sen:rango>
 
-                </sensor>
-                <sensor idSensor="SEN2-sm">
-                    <elementoSensado>salinidad del agua</elementoSensado>
-                    <rango>1.5 15.75 5</rango>
-                </sensor>
-            </sensores>
-        </configuracionDron>
+                    </sen:sensor>
+                    <sen:sensor idSensor="SEN2-sm">
+                        <sen:elementoSensado>salinidad del agua</sen:elementoSensado>
+                        <sen:rango>1.5 15.75 5</sen:rango>
+                    </sen:sensor>
+                </dro:sensores>
+                <dro:actuadores>
+                     <act:numeroActuadores>2</act:numeroActuadores>
+                    <act:actuador idActuador="AC$01">
+                        <act:alcanceActuacion>
+                            <act:tipoActuacion>Tipo de actuacion 1</act:tipoActuacion>
+                            <act:fechasActuacion>2023-02-02</act:fechasActuacion>
+                        </act:alcanceActuacion>
+                    </act:actuador>
+                    <act:actuador idActuador="AB$01">
+                        <act:alcanceActuacion>
+                            <act:tipoActuacion>Tipo de actuacion 1</act:tipoActuacion>
+                            <act:fechasActuacion>2023-02-02</act:fechasActuacion>                        </act:alcanceActuacion>
+                    </act:actuador>
+                </dro:actuadores>
+            </dro:configuracionDron>
+        </tns:dron>
 
-    </dron>
     <dron matriculaDron="99998">
         <actuadores>
             <numeroActuadores>2</numeroActuadores>
@@ -48,44 +71,47 @@
         </actuadores>
 
     </dron>
-    <tarea idTarea="TAR-00001">
-        <descripcionTarea>cuidado</descripcionTarea>
-        <responsableTarea>
-            <email>javiv@gmail.com</email>
-            <url>https://upm.es</url>
-        </responsableTarea>
-        <dronesTarea>
-            <matricula>99998</matricula>
-            <actividadMision>limpiar de manera adecuada</actividadMision>
-        </dronesTarea>
-        <areaGeografica>
-            <centro>
-                <longitud>19,08</longitud>
-                <latitud>20,56</latitud>
-            </centro>
-            <profundidad>5 10</profundidad>
-            <forma>cilindro</forma>
-        </areaGeografica>
-    </tarea>
+    </tns:drones>
+    <tns:tareas>
+        <tns:tarea idTarea="TAR-12345">
+            <tar:descripcionTarea>Medir la salinidad del agua</tar:descripcionTarea>
+            <tar:responsableTarea>
+                <tar:email>javier.gonzalezma@alumnos.upm.es</tar:email>
+                <tar:url>www.upm.es</tar:url>
+            </tar:responsableTarea>
+            <tar:dronesTarea>
+                <tar:matricula>ABCD5</tar:matricula>
+                <tar:actividadMision>Medir la salinidad</tar:actividadMision>
+            </tar:dronesTarea>
+            <tar:areaGeografica>
+                <tar:centro>
+                    <tar:longitud>26.6803</tar:longitud>
+                    <tar:latitud>26.6803</tar:latitud>
+                </tar:centro>
+                <tar:profundidad>3.45 23.22</tar:profundidad>
+                <tar:forma>cilindro</tar:forma>
+            </tar:areaGeografica>
+        </tns:tarea>
+        
+        <tns:tarea idTarea="TAR-12355">
+            <tar:descripcionTarea>Medir la salinidad del agua</tar:descripcionTarea>
+            <tar:responsableTarea>
+                <tar:email>javier.gonzalezma@alumnos.upm.es</tar:email>
+                <tar:url>www.upm.es</tar:url>
+            </tar:responsableTarea>
+            <tar:dronesTarea>
+                <tar:matricula>ABCD5</tar:matricula>
+                <tar:actividadMision>Medir la salinidad</tar:actividadMision>
+            </tar:dronesTarea>
+            <tar:areaGeografica>
+                <tar:centro>
+                    <tar:longitud>26.6803</tar:longitud>
+                    <tar:latitud>26.6803</tar:latitud>
+                </tar:centro>
+                <tar:profundidad>3.45 23.22</tar:profundidad>
+                <tar:forma>cilindro</tar:forma>
+            </tar:areaGeografica>
+        </tns:tarea>
+    </tns:tareas>
     
-    <tarea idTarea="TAR-00002">
-        <descripcionTarea>mantenimiento</descripcionTarea>
-        <responsableTarea>
-            <email>javiv@gmail.com</email>
-            <url>https://upm.es</url>
-        </responsableTarea>
-        <dronesTarea>
-            <matricula>99999</matricula>
-            <actividadMision>limpiar de manera rapida</actividadMision>
-        </dronesTarea>
-        <areaGeografica>
-            <centro>
-                <longitud>194,08</longitud>
-                <latitud>200,56</latitud>
-            </centro>
-            <profundidad>5 15</profundidad>
-            <forma>esfera</forma>
-        </areaGeografica>
-    </tarea>
-    
-</mision>
+</tns:mision>

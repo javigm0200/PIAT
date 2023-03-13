@@ -5,30 +5,53 @@
         elementFormDefault="qualified">
 
     
-<xsd:complexType name="tIdentificacion">
-    <xsd:sequence>
-        <xsd:element name="descripcion" type="tns:typeDescripcion" minOccurs="1">
-        </xsd:element>
-    </xsd:sequence>
-    <xsd:attribute name="codigoMision" type="tns:idIdentificacion" use="required"></xsd:attribute>
-</xsd:complexType>
+<xsd:element name="identificacion" type="tns:tidentificacion"> 
+    </xsd:element>
 
 <xsd:simpleType name="idIdentificacion">
     <xsd:restriction base="xsd:string">
-        <xsd:pattern value="[A-Z]-[0-9]{3}-[a-z]{2}"></xsd:pattern>
+        <xsd:pattern value="[A-Z]{1}[0-9]{3}[a-z]{2}"></xsd:pattern>
     </xsd:restriction>
 </xsd:simpleType>
 
-<xsd:simpleType name="typeDescripcion">
+
+<xsd:simpleType name="keywordType">
     <xsd:restriction base="xsd:string">
-        <xsd:minLength value="2"></xsd:minLength>
-        <xsd:maxLength value="30"></xsd:maxLength>
+            <xsd:minLength value="2"/>
+            <xsd:maxLength value="30"/>
     </xsd:restriction>
 </xsd:simpleType>
+
+<xsd:complexType name="tidentificacion">
+    <xsd:sequence>
+        <xsd:element name="descripcion">
+            <xsd:complexType mixed="true">
+                <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element name="keyword" type="tns:keywordType"></xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="codigoMision" type="tns:idIdentificacion" use="required"></xsd:attribute>
+
+</xsd:complexType>
+
+    
+<!-- <xsd:complexType name="descripcionType" mixed="true">
+                    <xsd:choice maxOccurs="unbounded">
+                        <xsd:element name="keyword" type="tns:keywordType"/>
+                    </xsd:choice>
+            </xsd:complexType>
+
+            <xsd:simpleType name="keywordType">
+                <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="2"/>
+                    <xsd:maxLength value="30"/>
+                </xsd:restriction>
+            </xsd:simpleType> -->
     
     
     
-    
-    
+ 
     
 </xsd:schema>

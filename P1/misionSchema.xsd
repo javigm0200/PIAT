@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-    targetNamespace="http://www.piat.upm.es/mision"
-    xmlns:tns="http://www.piat.upm.es/mision"
-    xmlns:ids="http://www.piat.upm.es/identificacionSchema" 
+    targetNamespace="http://www.piat.upm.es/misionSchema"
+    xmlns:tns="http://www.piat.upm.es/misionSchema"
+    xmlns:ids="http://www.piat.upm.es/identificacionSchema"
+    xmlns:drn="http://www.piat.upm.es/dronSchema"
+    xmlns:trs="http://www.piat.upm.es/tareaSchema"
     elementFormDefault="qualified">
 
     <xsd:import namespace="http://www.piat.upm.es/identificacionSchema" schemaLocation="./identificacionSchema.xsd"/>
     <xsd:import namespace="http://www.piat.upm.es/dronSchema" schemaLocation="./dronSchema.xsd"/>
+    <xsd:import namespace="http://www.piat.upm.es/tareaSchema" schemaLocation="./tareaSchema.xsd"></xsd:import>
 
-    <xsd:element name="mision">
-        <xsd:complexType>
+    <xsd:element name="mision" type="tns:tmision"/>
+
+    <xsd:complexType name="tmision">
             <xsd:sequence>
-                <!-- <xsd:element name="identificacion" type="tns:tIdentificacion" minOccurs="1" maxOccurs="1"></xsd:element> -->
+                <xsd:element name="identificacion" type="ids:tidentificacion" minOccurs="1" maxOccurs="1">
+                    <!-- <xsd:key name="codigoId">
+                        <xsd:selector xpath="./ids:identificacionSchema"></xsd:selector>
+                        <xsd:field xpath="@codigoMision"></xsd:field>
+                    </xsd:key> -->
+                </xsd:element>
+                <xsd:element name="drones">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="dron" type="drn:tdron" minOccurs="1"></xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="tareas">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="tarea" type="trs:ttarea"></xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
             </xsd:sequence>
-        </xsd:complexType>
-    </xsd:element>
+    </xsd:complexType>
+
+    
 
 </xsd:schema>
