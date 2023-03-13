@@ -1,33 +1,95 @@
-<?xml version = "1.0" encoding= "UTF-8"?>
-<documentoMision>
-    <metadatos>
-        <identificacion version="50ab"/>
-        <propietario>
-            <nombrePR>javier</nombrePR>
-            <contacto identificadorFiscal="00098662A">
-                <email>javiv@gmail.com</email>
-                <url>https://javi.com</url>
-            </contacto>
-        </propietario>
-    </metadatos>
-    <datosMision idDM="1111">
-        <descripcionDM>
-            la mision consiste en <b>poner palabras</b> en <b><i>negrita y cursiva</i></b>
-        </descripcionDM>
-        <formatoDatos>JSON</formatoDatos>
-        <lenguaje>W3C</lenguaje>
-        <fecha>2022-07-23</fecha>
-        <![CDATA[<datosSensores>datos sensores</datosSensores>]]>
-        <![CDATA[<datosActuadores>datos actuadores</datosActuadores>]]>
-        <imagenes idImagen="IMAG01">
-            <datosImagen> 
-                <dimensiones>
-                    <ancho>22</ancho>
-                    <alto>0,7</alto>
-                </dimensiones>
-                <descripcion>mision importante en xml</descripcion>
-                <contenido formato="GIF"></contenido>
-            </datosImagen>
-        </imagenes>
-    </datosMision>
-</documentoMision>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Javier González Martínez PIAT Practica1 -->
+
+<tns:documentoMision xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:prop="http://www.piat.upm.es/propietarioSchema"
+    xmlns:imag="http://www.piat.upm.es/imagenSchema"
+    
+    xmlns:tns="http://www.piat.upm.es/documentoMisionSchema"
+    xsi:schemaLocation="http://www.piat.upm.es/documentoMisionSchema ./documentoMisionSchema.xsd">
+                    
+    
+    <tns:metadatos>
+        <tns:identificacion version="50ab"/>
+            <tns:propietarios>
+                <tns:propietario>
+                <prop:nombrePR>javier</prop:nombrePR>
+                <prop:contacto identificadorFiscal="00098662A">
+                    <prop:email>javiv@gmail.com</prop:email>
+                    <prop:url>https://javi.com</prop:url>
+                </prop:contacto>
+            </tns:propietario>
+            <tns:propietario>
+                <prop:nombrePR>javier</prop:nombrePR>
+                <prop:contacto identificadorFiscal="10098662A">
+                    <prop:email>javiv@gmail.com</prop:email>
+                    <prop:url>https://javi.com</prop:url>
+                </prop:contacto>
+            </tns:propietario>
+            </tns:propietarios>
+    </tns:metadatos>
+    <tns:datosMision idDM="1111">
+        <tns:descripcionDM>
+            la mision consiste en  palabra y cursiva
+        </tns:descripcionDM>
+        <tns:formatoDatos>JSON</tns:formatoDatos>
+        <tns:lenguaje>W3C</tns:lenguaje>
+        <tns:fecha>2022-07-23</tns:fecha>
+        <tns:datosSensores><![CDATA[<datosSensores>datos sensores</datosSensores>]]></tns:datosSensores>
+        <tns:datosActuadores><![CDATA[<datosActuadores>datos actuadores</datosActuadores>]]></tns:datosActuadores>
+        <tns:imagenes>
+            <tns:imagen idImagen="IMAG21">
+                <imag:datosImagen> 
+                    <imag:dimensiones>
+                        <imag:alto>0.7</imag:alto>
+                        <imag:ancho>22</imag:ancho>
+                    </imag:dimensiones>
+                    <imag:descripcion>mision importante en xml</imag:descripcion>
+                    <imag:contenido formato="GIF"></imag:contenido>
+                </imag:datosImagen>
+            </tns:imagen>
+            <tns:imagen idImagen="IMAG22">
+                <imag:datosImagen> 
+                    <imag:dimensiones>
+                        <imag:alto>0.7</imag:alto>
+                        <imag:ancho>22</imag:ancho>
+                    </imag:dimensiones>
+                    <imag:descripcion>mision importante en xml</imag:descripcion>
+                    <imag:contenido formato="GIF"></imag:contenido>
+                </imag:datosImagen>
+            </tns:imagen>
+        </tns:imagenes>
+    </tns:datosMision>
+    <tns:datosMision idDM="1121">
+        <tns:descripcionDM>
+            la mision consiste en  palabra y cursiva
+        </tns:descripcionDM>
+        <tns:formatoDatos>JSON</tns:formatoDatos>
+        <tns:lenguaje>W3C</tns:lenguaje>
+        <tns:fecha>2022-07-23</tns:fecha>
+        <tns:datosSensores><![CDATA[<datosSensores>datos sensores</datosSensores>]]></tns:datosSensores>
+        <tns:datosActuadores><![CDATA[<datosActuadores>datos actuadores</datosActuadores>]]></tns:datosActuadores>
+        <tns:imagenes>
+            <tns:imagen idImagen="IMAG23">
+                <imag:datosImagen> 
+                    <imag:dimensiones>
+                        <imag:alto>0.7</imag:alto>
+                        <imag:ancho>22</imag:ancho>
+                    </imag:dimensiones>
+                    <imag:descripcion>mision importante en xml</imag:descripcion>
+                    <imag:contenido formato="GIF"></imag:contenido>
+                </imag:datosImagen>
+            </tns:imagen>
+            <tns:imagen idImagen="IMAG24">
+                <imag:datosImagen> 
+                    <imag:dimensiones>
+                        <imag:alto>0.7</imag:alto>
+                        <imag:ancho>22</imag:ancho>
+                    </imag:dimensiones>
+                    <imag:descripcion>mision importante en xml</imag:descripcion>
+                    <imag:contenido formato="GIF"></imag:contenido>
+                </imag:datosImagen>
+            </tns:imagen>
+        </tns:imagenes>
+    </tns:datosMision>
+</tns:documentoMision>

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Javier González Martínez PIAT Practica1 -->
+
+
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
     targetNamespace="http://www.piat.upm.es/dronSchema"
     xmlns:tns="http://www.piat.upm.es/dronSchema"
@@ -10,25 +13,30 @@
     <xsd:import namespace="http://www.piat.upm.es/actuadoresSchema" schemaLocation="./actuadoresSchema.xsd"/>
 
 
-    <xsd:element name="dron" type="tns:tdron">
-        <xsd:key name="claveActuador">
-            <xsd:selector xpath=".//act:actuadores"></xsd:selector>
-            <xsd:field xpath="@idActuador"></xsd:field>
-        </xsd:key>
-    </xsd:element>
+    <xsd:element name="dron" type="tns:tdron"></xsd:element>
 
     <xsd:complexType name="tdron">
-        
             <xsd:sequence>
                 <xsd:element name="claseDron" minOccurs="1" maxOccurs="1" type="tns:tclaseDronLista"></xsd:element>
-                <xsd:element name="homologaciones" type="tns:thomologaciones"></xsd:element>
-                <xsd:element name="configuracionDron">
+                <xsd:element name="homologaciones" type="tns:thomologaciones" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+                <xsd:element name="configuracionDron" minOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element name="sensores" type="sen:tsensores"/>
-                            <xsd:element name="actuadores" type="act:tactuadores"/>
+                            <xsd:element name="sensores" type="sen:tsensores" minOccurs="0" maxOccurs="1">
+                                <xsd:key name="claveSensor">
+                                    <xsd:selector xpath="./sen:sensor"></xsd:selector>
+                                    <xsd:field xpath="@idSensor"></xsd:field>
+                                </xsd:key>
+                            </xsd:element>
+                            <xsd:element name="actuadores" type="act:tactuadores" minOccurs="0" maxOccurs="1">
+                                <xsd:key name="claveActuador">
+                                    <xsd:selector xpath="./act:actuador"></xsd:selector>
+                                    <xsd:field xpath="@idActuador"></xsd:field>
+                                </xsd:key>
+                            </xsd:element>
                         </xsd:sequence>
                      </xsd:complexType>
+                     
                 </xsd:element>
             </xsd:sequence>
             <xsd:attribute name="matriculaDron" type="tns:tmatriculaDron" use="required"></xsd:attribute>
@@ -54,8 +62,8 @@
 
     <xsd:complexType name="thomologaciones">
         <xsd:choice minOccurs="1" maxOccurs="unbounded">
-            <xsd:element name="nacional" type="xsd:string"></xsd:element>
-            <xsd:element name="internacional" type="xsd:string"></xsd:element>
+            <xsd:element name="nacional" type="xsd:token"></xsd:element>
+            <xsd:element name="internacional" type="xsd:token"></xsd:element>
         </xsd:choice>
     </xsd:complexType>
 

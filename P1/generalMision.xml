@@ -1,10 +1,21 @@
-<?xml version = "1.0" encoding= "UTF-8"?>
-<generalMision>
-    <mision codigoMision="M123aa">
-    </mision>
-    <documentoMision>
-        <identificacion version="4" numeroOrden="2" propietario="00000000A">
-            iukBWUQB
-        </identificacion>
-    </documentoMision>
-</generalMision>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Javier González Martínez PIAT Practica1 -->
+
+<tns:generalMision xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:mis="http://www.piat.upm.es/misionSchema"
+             xmlns:doc="http://www.piat.upm.es/documentoMisionSchema"
+             xmlns:ide="http://www.piat.upm.es/identificacionSchema"
+
+             xmlns:tns="http://www.piat.upm.es/generalMisionSchema"
+             xsi:schemaLocation="http://www.piat.upm.es/generalMisionSchema ./generalMisionSchema.xsd">
+    
+    <tns:misiones>
+        <tns:mision>A231as</tns:mision>
+    </tns:misiones>
+    <tns:documentoMision numeroOrden="2" propietario="12345432Z" codigoMision="A123as">
+        <ide:descripcion>ejemplo de descripcion</ide:descripcion>
+    </tns:documentoMision>
+    <tns:documentoMision numeroOrden="7" propietario="22345432Z" codigoMision="A123as">
+        <ide:descripcion>ejemplo de descripcion2</ide:descripcion>
+    </tns:documentoMision>
+</tns:generalMision>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Javier González Martínez PIAT Practica1 -->
+
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
     targetNamespace="http://www.piat.upm.es/actuadoresSchema"
     xmlns:tns="http://www.piat.upm.es/actuadoresSchema" 
@@ -6,7 +8,7 @@
 
 
     <xsd:element name="actuadores" type="tns:tactuadores">
-        <xsd:key name="claveSensor">
+        <xsd:key name="claveActuador">
             <xsd:selector xpath="./actuador"></xsd:selector>
             <xsd:field xpath="@idActuador"></xsd:field>
         </xsd:key>
@@ -14,16 +16,16 @@
 
     <xsd:complexType name="tactuadores">
         <xsd:sequence>
-            <xsd:element name="numeroActuadores" type="xsd:integer"></xsd:element>
+            <xsd:element name="numeroActuadores" type="xsd:integer" minOccurs="1"></xsd:element>
             <xsd:element name="actuador" minOccurs="1" maxOccurs="unbounded">
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="alcanceActuacion" minOccurs="0" maxOccurs="unbounded">
                             <xsd:complexType>
-                                <xsd:sequence>
+                                <xsd:choice>
                                     <xsd:element name="tipoActuacion" type="xsd:string"></xsd:element>
                                     <xsd:element name="fechasActuacion" type="tns:tfechasActuacion"></xsd:element>
-                                </xsd:sequence>
+                                </xsd:choice>
                             </xsd:complexType>
                         </xsd:element>
                     </xsd:sequence>
@@ -41,7 +43,13 @@
 </xsd:simpleType>
 
 <xsd:simpleType name="tfechasActuacion">
-    <xsd:restriction base="xsd:date">
+    <xsd:restriction base="tns:tlistafechasActuacion">
+        <xsd:length value="2"></xsd:length>
     </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="tlistafechasActuacion">
+    <xsd:list itemType="xsd:date">
+    </xsd:list>
 </xsd:simpleType>
 </xsd:schema>

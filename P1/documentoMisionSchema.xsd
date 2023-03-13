@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Javier González Martínez PIAT Practica1 -->
+
+
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
     targetNamespace="http://www.piat.upm.es/documentoMisionSchema"
     xmlns:tns="http://www.piat.upm.es/documentoMisionSchema"
@@ -12,35 +15,58 @@
 
     <xsd:element name="documentoMision" type="tns:tdocumentoMision">
         <xsd:key name="claveIdentificadorFiscal">
-            <xsd:selector xpath="./pro:contacto"></xsd:selector>
+            <xsd:selector xpath="./tns:metadatos/tns:propietarios/tns:propietario/pro:contacto"></xsd:selector>
             <xsd:field xpath="@identificadorFiscal"></xsd:field>
         </xsd:key>
-        
+        <xsd:key name="claveidDM">
+            <xsd:selector xpath="./tns:datosMision"></xsd:selector>
+            <xsd:field xpath="@idDM"></xsd:field>
+        </xsd:key>
+        <xsd:key name="claveidImagen">
+            <xsd:selector xpath="./tns:datosMision/tns:imagenes/tns:imagen"></xsd:selector>
+            <xsd:field xpath="@idImagen"></xsd:field>
+        </xsd:key>
     </xsd:element>
+    
     <xsd:complexType name="tdocumentoMision">
         <xsd:sequence>
-            <xsd:element name="metadatos" type="tns:tmetadatos"></xsd:element>
+            <xsd:element name="metadatos" type="tns:tmetadatos" minOccurs="1">
+            </xsd:element>
             <xsd:element name="datosMision" minOccurs="1" maxOccurs="unbounded">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="descripcionDM" type="xsd:string"></xsd:element>
-                        <xsd:element name="formatoDatos" type="tns:tformatoDatos"></xsd:element>
+                        <xsd:element name="descripcionDM" type="xsd:string" minOccurs="1"></xsd:element>
+                        <xsd:element name="formatoDatos" type="tns:tformatoDatos" minOccurs="1"></xsd:element>
                         <xsd:element name="lenguaje" type="tns:tlenguaje"></xsd:element>
                         <xsd:element name="fecha" type="xsd:date"></xsd:element>
-                        <xsd:element name="datosSensores" type="xsd:string"></xsd:element>
-                        <xsd:element name="datosActuadores" type="xsd:string"></xsd:element>
-                        <xsd:element name="imagenes" type="ima:timagen"></xsd:element>
+                        <xsd:element name="datosSensores" type="xsd:string" minOccurs="1"></xsd:element>
+                        <xsd:element name="datosActuadores" type="xsd:string" minOccurs="0"></xsd:element>
+                        <xsd:element name="imagenes">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="imagen" type="ima:timagen" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
                     </xsd:sequence>
+                    <xsd:attribute name="idDM" type="xsd:integer" use="required"></xsd:attribute>
                 </xsd:complexType>
             </xsd:element>
+            
         </xsd:sequence>
     </xsd:complexType>
 
     <xsd:complexType name="tmetadatos">
         <xsd:sequence>
-            <xsd:element name="identificacion" type="tns:tIdentificacion">
+            <xsd:element name="identificacion" type="tns:tidentificacion" minOccurs="1"></xsd:element>
+            <xsd:element name="propietarios">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="propietario" type="pro:tpropietario" minOccurs="1" maxOccurs="unbounded">
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
             </xsd:element>
-            <xsd:element name="propietario" type="pro:tpropietario"></xsd:element>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -50,7 +76,7 @@
         </xsd:restriction>
     </xsd:simpleType>
 
-    <xsd:complexType name="tIdentificacion">
+    <xsd:complexType name="tidentificacion">
         <xsd:simpleContent>
 				    <xsd:extension base="xsd:string">
 					    <xsd:attribute name="version" type="tns:tversion" use="required"/>

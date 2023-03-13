@@ -1,4 +1,6 @@
 <?xml version = "1.0" encoding= "UTF-8"?>
+<!-- Javier González Martínez PIAT Practica1 -->
+
 <tns:mision xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ide="http://www.piat.upm.es/identificacionSchema"
     xmlns:dro="http://www.piat.upm.es/dronSchema"
@@ -10,9 +12,8 @@
 
     <tns:identificacion codigoMision = "M123ab">
         <ide:descripcion>
-            <!-- La misión consiste en <keyword> reparar </keyword> una <keyword> conexión </keyword> de <keyword> una torre demedia tensión </keyword> del Campus Sur. -->
+            La misión consiste en <ide:keyword> reparar </ide:keyword> una <ide:keyword> conexión </ide:keyword>
         </ide:descripcion>
-
     </tns:identificacion>
 
     <tns:drones>
@@ -30,7 +31,7 @@
                         <sen:rango>1.5 15.75 5</sen:rango>
 
                     </sen:sensor>
-                    <sen:sensor idSensor="SEN1-sm">
+                    <sen:sensor idSensor="SEN2-sm">
                         <sen:elementoSensado>salinidad del agua</sen:elementoSensado>
                         <sen:rango>1.5 15.75 5</sen:rango>
                     </sen:sensor>
@@ -40,19 +41,17 @@
                     <act:actuador idActuador="AC$01">
                         <act:alcanceActuacion>
                             <act:tipoActuacion>Tipo de actuacion 1</act:tipoActuacion>
-                            <act:fechasActuacion>2023-02-02</act:fechasActuacion>
                         </act:alcanceActuacion>
                     </act:actuador>
-                    <act:actuador idActuador="AC$01">
+                    <act:actuador idActuador="AC$02">
                         <act:alcanceActuacion>
-                            <act:tipoActuacion>Tipo de actuacion 1</act:tipoActuacion>
-                            <act:fechasActuacion>2023-02-02</act:fechasActuacion>                        </act:alcanceActuacion>
+                            <act:fechasActuacion>2023-02-02 2021-01-31</act:fechasActuacion></act:alcanceActuacion>
                     </act:actuador>
                 </dro:actuadores>
             </dro:configuracionDron>
         </tns:dron>
 
-        <tns:dron matriculaDron="99989">
+        <tns:dron matriculaDron="99899">
             <dro:claseDron>autonomo 5</dro:claseDron>
             <dro:homologaciones>
                 <dro:nacional>Madrid</dro:nacional>
@@ -66,7 +65,7 @@
                         <sen:rango>1.5 15.75 5</sen:rango>
 
                     </sen:sensor>
-                    <sen:sensor idSensor="SEN1-sm">
+                    <sen:sensor idSensor="SEN2-sm">
                         <sen:elementoSensado>salinidad del agua</sen:elementoSensado>
                         <sen:rango>1.5 15.75 5</sen:rango>
                     </sen:sensor>
@@ -76,13 +75,11 @@
                     <act:actuador idActuador="AC$01">
                         <act:alcanceActuacion>
                             <act:tipoActuacion>Tipo de actuacion 1</act:tipoActuacion>
-                            <act:fechasActuacion>2023-02-02</act:fechasActuacion>
                         </act:alcanceActuacion>
                     </act:actuador>
                     <act:actuador idActuador="AB$01">
                         <act:alcanceActuacion>
-                            <act:tipoActuacion>Tipo de actuacion 1</act:tipoActuacion>
-                            <act:fechasActuacion>2023-02-02</act:fechasActuacion>                        </act:alcanceActuacion>
+                            <act:fechasActuacion>2023-02-02 2021-01-30</act:fechasActuacion>                        </act:alcanceActuacion>
                     </act:actuador>
                 </dro:actuadores>
             </dro:configuracionDron>
@@ -112,7 +109,7 @@
         <tns:tarea idTarea="TAR-12355">
             <tar:descripcionTarea>Medir la salinidad del agua</tar:descripcionTarea>
             <tar:responsableTarea>
-                <tar:email>javier.gonzalezma@alumnos.upm.es</tar:email>
+                <tar:email>javier.gonzalezm@alumnos.upm.es</tar:email>
                 <tar:url>www.upm.es</tar:url>
             </tar:responsableTarea>
             <tar:dronesTarea>

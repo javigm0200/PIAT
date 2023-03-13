@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Javier González Martínez PIAT Practica1 -->
+
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
     targetNamespace="http://www.piat.upm.es/misionSchema"
     xmlns:tns="http://www.piat.upm.es/misionSchema"
@@ -11,7 +13,24 @@
     <xsd:import namespace="http://www.piat.upm.es/dronSchema" schemaLocation="./dronSchema.xsd"/>
     <xsd:import namespace="http://www.piat.upm.es/tareaSchema" schemaLocation="./tareaSchema.xsd"></xsd:import>
 
-    <xsd:element name="mision" type="tns:tmision"/>
+    <xsd:element name="mision" type="tns:tmision">
+        <!-- <xsd:keyref name="matriculaKeyRef" refer="tns:clavematriculaDron">
+            <xsd:selector xpath="./tns:dron"/>
+            <xsd:field xpath="dron"/>
+        </xsd:keyref> -->
+        <xsd:key name="claveIdtarea">
+            <xsd:selector xpath="./tns:tarea"></xsd:selector>
+            <xsd:field xpath="@idTarea"></xsd:field>
+        </xsd:key>
+        <xsd:key name="claveEmail">
+            <xsd:selector xpath="./tns:tareas/tns:tarea/trs:responsableTarea/trs:email"/>
+            <xsd:field xpath="." />
+        </xsd:key>
+        <xsd:keyref name="claverefclaveTarea" refer="tns:codigomatriculaDron">
+            <xsd:selector xpath="./tns:tareas/tns:tarea/trs:dronesTarea/trs:dronTarea"/>
+            <xsd:field xpath="trs:matricula"/>
+        </xsd:keyref>
+    </xsd:element>
 
     <xsd:complexType name="tmision">
             <xsd:sequence>
@@ -24,24 +43,26 @@
                 <xsd:element name="drones">
                     <xsd:complexType>
                         <xsd:sequence>
-                            <xsd:element name="dron" type="drn:tdron" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+                            <xsd:element name="dron" type="drn:tdron" minOccurs="1" maxOccurs="unbounded">
+                            </xsd:element>
                         </xsd:sequence>
                     </xsd:complexType>
+                    <xsd:key name="codigomatriculaDron">
+                        <xsd:selector xpath="./tns:dron"></xsd:selector>
+                        <xsd:field xpath="@matriculaDron"></xsd:field>
+                    </xsd:key>
                 </xsd:element>
-                <xsd:element name="tareas">
+                <xsd:element name="tareas" minOccurs="1">
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element name="tarea" type="trs:ttarea" minOccurs="1" maxOccurs="unbounded"></xsd:element>
                         </xsd:sequence>
                     </xsd:complexType>
                     <xsd:key name="claveTarea">
-                        <xsd:selector xpath="./trs:tarea"></xsd:selector>
+                        <xsd:selector xpath="./tns:tarea"></xsd:selector>
                         <xsd:field xpath="@idTarea"></xsd:field>
                     </xsd:key>
                 </xsd:element>
             </xsd:sequence>
     </xsd:complexType>
-
-    
-
 </xsd:schema>

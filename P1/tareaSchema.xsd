@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Javier González Martínez PIAT Practica1 -->
+
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
     targetNamespace="http://www.piat.upm.es/tareaSchema"
     xmlns:tns="http://www.piat.upm.es/tareaSchema" 
     elementFormDefault="qualified">
 
 
-<xsd:element name="tarea" type="tns:ttarea"></xsd:element>
+<xsd:element name="tarea" type="tns:ttarea">
+    <xsd:key name="codigoEmail">
+        <xsd:selector xpath="./tns:responsableTarea"></xsd:selector>
+        <xsd:field xpath="@email"></xsd:field>
+    </xsd:key>
+</xsd:element>
 
 <xsd:complexType name="ttarea">
     <xsd:sequence>
-        <xsd:element name="descripcionTarea" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+        <xsd:element name="descripcionTarea" type="xsd:string" minOccurs="1"></xsd:element>
         <xsd:element name="responsableTarea" minOccurs="0">
             <xsd:complexType>
                 <xsd:sequence>
@@ -31,8 +38,7 @@
             <xsd:complexType>
                 <xsd:sequence>
                     <xsd:element name="centro" type="tns:tipoareaGeografica"></xsd:element>
-                    <xsd:element name="profundidad" type="tns:tprofundidad">
-                    </xsd:element>
+                    <xsd:element name="profundidad" type="tns:tprofundidad"></xsd:element>
                     <xsd:element name="forma" type="tns:tforma"></xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
@@ -47,10 +53,11 @@
 
 
 
+
 <xsd:complexType name="tipoareaGeografica">
     <xsd:sequence>
-        <xsd:element name="longitud" type="xsd:double"></xsd:element>
-        <xsd:element name="latitud" type="xsd:double"></xsd:element>
+        <xsd:element name="longitud" type="xsd:double" minOccurs="1"></xsd:element>
+        <xsd:element name="latitud" type="xsd:double" minOccurs="1"></xsd:element>
     </xsd:sequence>
 </xsd:complexType>
 

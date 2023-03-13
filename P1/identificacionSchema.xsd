@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Javier González Martínez PIAT Practica1 -->
+
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
         targetNamespace="http://www.piat.upm.es/identificacionSchema"
         xmlns:tns="http://www.piat.upm.es/identificacionSchema" 
@@ -25,18 +27,29 @@
 
 <xsd:complexType name="tidentificacion">
     <xsd:sequence>
-        <xsd:element name="descripcion">
+        <xsd:element name="descripcion" minOccurs="1">
             <xsd:complexType mixed="true">
-                <xsd:choice minOccurs="0" maxOccurs="unbounded">
-                    <!-- <xsd:element name="keyword" type="tns:keywordType"></xsd:element> -->
-                </xsd:choice>
+                <xsd:sequence>
+                    <xsd:element name="keyword" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:minLength value="2"/>
+                                <xsd:maxLength value="30"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                </xsd:sequence>
             </xsd:complexType>
         </xsd:element>
     </xsd:sequence>
-    <xsd:attribute name="codigoMision" type="tns:idIdentificacion" use="required"></xsd:attribute>
-
+    <xsd:attribute name="codigoMision" type="tns:tcodigoMision" use="required"></xsd:attribute>
 </xsd:complexType>
 
+<xsd:simpleType name="tcodigoMision">
+    <xsd:restriction base="xsd:string">
+        <xsd:pattern value="[A-Z]{1}[0-9]{3}[a-z]{2}"></xsd:pattern>
+    </xsd:restriction>
+</xsd:simpleType>
     
 <!-- <xsd:complexType name="descripcionType" mixed="true">
                     <xsd:choice maxOccurs="unbounded">
