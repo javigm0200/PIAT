@@ -11,23 +11,15 @@
 
 
     <xsd:element name="dron" type="tns:tdron">
-        <xsd:key name="claveSensor">
-            <xsd:selector xpath="./sen:sensores"></xsd:selector>
-            <xsd:field xpath="@idSensor"></xsd:field>
+        <xsd:key name="claveActuador">
+            <xsd:selector xpath=".//act:actuadores"></xsd:selector>
+            <xsd:field xpath="@idActuador"></xsd:field>
         </xsd:key>
     </xsd:element>
 
     <xsd:complexType name="tdron">
         
             <xsd:sequence>
-                    <!-- <xsd:key name="claveSensor">
-                        <xsd:selector xpath="./sen:sensores"></xsd:selector>
-                        <xsd:field xpath="@idSensor"></xsd:field>
-                    </xsd:key> -->
-                    <!-- <xsd:key name="claveActuador">
-                        <xsd:selector xpath="./act:actuadores"></xsd:selector>
-                        <xsd:field xpath="@idActuador"></xsd:field>
-                    </xsd:key> -->
                 <xsd:element name="claseDron" minOccurs="1" maxOccurs="1" type="tns:tclaseDronLista"></xsd:element>
                 <xsd:element name="homologaciones" type="tns:thomologaciones"></xsd:element>
                 <xsd:element name="configuracionDron">

@@ -10,7 +10,7 @@
 
     <tns:identificacion codigoMision = "M123ab">
         <ide:descripcion>
-            La misión consiste en <keyword> reparar </keyword> una <keyword> conexión </keyword> de <keyword> una torre demedia tensión </keyword> del Campus Sur.
+            <!-- La misión consiste en <keyword> reparar </keyword> una <keyword> conexión </keyword> de <keyword> una torre demedia tensión </keyword> del Campus Sur. -->
         </ide:descripcion>
 
     </tns:identificacion>
@@ -30,7 +30,43 @@
                         <sen:rango>1.5 15.75 5</sen:rango>
 
                     </sen:sensor>
-                    <sen:sensor idSensor="SEN2-sm">
+                    <sen:sensor idSensor="SEN1-sm">
+                        <sen:elementoSensado>salinidad del agua</sen:elementoSensado>
+                        <sen:rango>1.5 15.75 5</sen:rango>
+                    </sen:sensor>
+                </dro:sensores>
+                <dro:actuadores>
+                     <act:numeroActuadores>2</act:numeroActuadores>
+                    <act:actuador idActuador="AC$01">
+                        <act:alcanceActuacion>
+                            <act:tipoActuacion>Tipo de actuacion 1</act:tipoActuacion>
+                            <act:fechasActuacion>2023-02-02</act:fechasActuacion>
+                        </act:alcanceActuacion>
+                    </act:actuador>
+                    <act:actuador idActuador="AC$01">
+                        <act:alcanceActuacion>
+                            <act:tipoActuacion>Tipo de actuacion 1</act:tipoActuacion>
+                            <act:fechasActuacion>2023-02-02</act:fechasActuacion>                        </act:alcanceActuacion>
+                    </act:actuador>
+                </dro:actuadores>
+            </dro:configuracionDron>
+        </tns:dron>
+
+        <tns:dron matriculaDron="99989">
+            <dro:claseDron>autonomo 5</dro:claseDron>
+            <dro:homologaciones>
+                <dro:nacional>Madrid</dro:nacional>
+                <dro:internacional>España</dro:internacional>
+            </dro:homologaciones>
+            <dro:configuracionDron>
+                <dro:sensores>
+                    <sen:numeroSensores>2</sen:numeroSensores>
+                    <sen:sensor idSensor="SEN1-sm">
+                        <sen:elementoSensado>salinidad del agua</sen:elementoSensado>
+                        <sen:rango>1.5 15.75 5</sen:rango>
+
+                    </sen:sensor>
+                    <sen:sensor idSensor="SEN1-sm">
                         <sen:elementoSensado>salinidad del agua</sen:elementoSensado>
                         <sen:rango>1.5 15.75 5</sen:rango>
                     </sen:sensor>
@@ -51,26 +87,6 @@
                 </dro:actuadores>
             </dro:configuracionDron>
         </tns:dron>
-
-    <dron matriculaDron="99998">
-        <actuadores>
-            <numeroActuadores>2</numeroActuadores>
-            <actuador idActuador="AC$03">
-                <alcanceActuacion>
-                    <tipoActuacion>actuacionBosque</tipoActuacion>
-                    <fechasActuacion>2022-07-02 2022-05-20</fechasActuacion>
-                </alcanceActuacion>
-            
-            </actuador>
-            <actuador idActuador="AC$04">
-                <alcanceActuacion>
-                    <tipoActuacion>actuacionMontaña</tipoActuacion>
-                    <fechasActuacion>2022-08-02 2021-05-20</fechasActuacion>
-                </alcanceActuacion>
-            </actuador>
-        </actuadores>
-
-    </dron>
     </tns:drones>
     <tns:tareas>
         <tns:tarea idTarea="TAR-12345">
@@ -92,7 +108,7 @@
                 <tar:forma>cilindro</tar:forma>
             </tar:areaGeografica>
         </tns:tarea>
-        
+
         <tns:tarea idTarea="TAR-12355">
             <tar:descripcionTarea>Medir la salinidad del agua</tar:descripcionTarea>
             <tar:responsableTarea>

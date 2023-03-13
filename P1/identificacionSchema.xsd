@@ -5,8 +5,8 @@
         elementFormDefault="qualified">
 
     
-<xsd:element name="identificacion" type="tns:tidentificacion"> 
-    </xsd:element>
+<xsd:element name="identificacion" type="tns:tidentificacion"></xsd:element>
+
 
 <xsd:simpleType name="idIdentificacion">
     <xsd:restriction base="xsd:string">
@@ -22,12 +22,13 @@
     </xsd:restriction>
 </xsd:simpleType>
 
+
 <xsd:complexType name="tidentificacion">
     <xsd:sequence>
         <xsd:element name="descripcion">
             <xsd:complexType mixed="true">
                 <xsd:choice minOccurs="0" maxOccurs="unbounded">
-                    <xsd:element name="keyword" type="tns:keywordType"></xsd:element>
+                    <!-- <xsd:element name="keyword" type="tns:keywordType"></xsd:element> -->
                 </xsd:choice>
             </xsd:complexType>
         </xsd:element>

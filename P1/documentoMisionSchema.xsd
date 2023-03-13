@@ -9,6 +9,14 @@
     <xsd:import namespace="http://www.piat.upm.es/imagenSchema" schemaLocation="./imagenSchema.xsd"></xsd:import>
     <xsd:import namespace="http://www.piat.upm.es/propietarioSchema" schemaLocation="./propietarioSchema.xsd"></xsd:import>
 
+
+    <xsd:element name="documentoMision" type="tns:tdocumentoMision">
+        <xsd:key name="claveIdentificadorFiscal">
+            <xsd:selector xpath="./pro:contacto"></xsd:selector>
+            <xsd:field xpath="@identificadorFiscal"></xsd:field>
+        </xsd:key>
+        
+    </xsd:element>
     <xsd:complexType name="tdocumentoMision">
         <xsd:sequence>
             <xsd:element name="metadatos" type="tns:tmetadatos"></xsd:element>
