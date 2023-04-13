@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 /**
- * @author Ponga aquí su nombre, apellidos y DNI
+ * @author Javier González Martínez 06603090C
  *
  */
 public class EstadisticasLog {
@@ -26,20 +26,19 @@ public class EstadisticasLog {
 	
 	// Patrón de una traza cualquiera correcta de la que podemos extraer, en el grupo 1, el nombre del servidor
 	//TODO: Modificar este patrón para que tenga más grupos y así se pueda extraer más información y no solo el nombre del servidor
-	private final static String patronTraza = "^"+FECHA+"\\s+" + HORA + "\\s+(" + TIPO_SERVIDOR  + NUMERO_SERVIDOR+")+\\s+\\[\\w+\\]:.*";
+	private final static String patronTraza = "^(" + FECHA + ")\\s(" + HORA + ")\\s((" + TIPO_SERVIDOR + ")"
+	+ NUMERO_SERVIDOR + ")\\s\\[\\w+\\]:.*";
 	
 	
-	/* Patrones que se usan en las estadísticas agregadas */
-	private final static String msgBLOQUEADOS = ".*SEC-BLOCKED.*"; 	// Los mensajes bloqueados son los que tienen la palabra SEC-BLOCKED en la traza	
-	private final static String msgPASADOS = ".*SEC-PASSED.*";		// Los mensajes que pasan al siguiente servidor son los que tienen la palabra SEC-PASSED en la traza
+	//private final static String msgBLOQUEADOS = ".*SEC-BLOCKED.*"; 	// Los mensajes bloqueados son los que tienen la palabra SEC-BLOCKED en la traza	
+	//private final static String msgPASADOS = ".*SEC-PASSED.*";		// Los mensajes que pasan al siguiente servidor son los que tienen la palabra SEC-PASSED en la traza
 	//TODO: Cambiar estos patrones por los que se piden en la práctica
-	private final static String msgIn= ".*smtp-in.*message from.*";//".*smtp-in.*.*accepted.*";
-	private final static String msgOut=".*smtp-out.*message from.*";//".*security.*INFECTED.*";//".*smtp-out.*.*delivered, dsn: 2.0.0.*";
+	private final static String msgIn= ".*smtp-in.*.*accepted.*";
+	private final static String msgOut=".*smtp-out.*.*delivered, dsn: 2.0.0.*";
 	private final static String msgInfected=".*security.*.*INFECTED.*";
-	private final static String msgSPAM=".*security.*.*SPAM.*";
-	private final static String msgRegEx432=".*4\\.3\\.2.*";//".*overload.*"; //".*(4\\.3\\.2).*";
-	private final static String msgRegEx511=".*5\\.1\\.1.*";
-
+	private final static String msgSPAM="^(?!.*SEC-BLOCKED).*security.*.*SPAM.*";
+	private final static String msgRegEx432=".*overload.*"; //".*(4\\.3\\.2).*";
+	private final static String msgRegEx511=".*(5\\.1\\.1).*";
 	public static void main(String[] args) throws InterruptedException {
 	    Thread.currentThread().setName("Principal");
 	    // Verificar que se pasa como argumento el directorio con los logs y obtenerlo
@@ -48,14 +47,15 @@ public class EstadisticasLog {
 		// En este array bidimensional se almacenan los nombres de los estadísticos a obtener y el patrón para que luego sea mas fácil recorrerlo 
 		// y meter sus valores en el mapa hmPatronesEstadisticasAgregadas 
 		final String[][] patronesEstadisticasAgregadas= {
-							{"msgBLOQUEADOS",msgBLOQUEADOS},
-							{"msgPASADOS",msgPASADOS},
+							//{"msgBLOQUEADOS",msgBLOQUEADOS},
+							//{"msgPASADOS",msgPASADOS},
 							{"msgIn", msgIn},
 							{"msgOut", msgOut},
 							{"msgINFECTED", msgInfected},
 							{"msgSPAM", msgSPAM},
 							{"code 4.3.2", msgRegEx432},
-							{"code 5.1.1", msgRegEx511}						
+							{"code 5.1.1", msgRegEx511}	
+												
 						};
 		//TODO: Cambiar estos patrones por los que se piden en la práctica
 		
@@ -153,7 +153,7 @@ public class EstadisticasLog {
 		System.out.println("\t Numero de trazas procesadas: "+ lineasCorrectas.get()+lineasIncorrectas.get());
 		System.out.println("\t Numero de trazas incorrectas: "+ lineasIncorrectas.get());
 
-		
+		String tServidorAnterior = "";
 		/* Estadísticas agregadas */
 		System.out.println("\n\n  Estadísticas agregadas:");
 		
@@ -161,8 +161,21 @@ public class EstadisticasLog {
 		Map <String, AtomicInteger> mapaOrdenado = new TreeMap<String ,AtomicInteger>(hmEstadisticasAgregadas);
 		for (Map.Entry<String, AtomicInteger> entrada : mapaOrdenado.entrySet()) {
 			//TODO: La siguiente instrucción es correcta, pero se puede cambiar para que salga mejor formateada
-			System.out.println(("\t"+entrada.getKey()+" = " +entrada.getValue().get()+"\n").getBytes());
-	        }
+			//System.out.println(("\t"+entrada.getKey()+" = " +entrada.getValue().get()+"\n").getBytes());
+			String datos[] = entrada.getKey().split(" ", 3);
+			String tServidor = datos[0];
+			String fecha = datos[1];
+			String estadistic = datos[2];
+
+			if (!tServidor.equals(tServidorAnterior)) {
+				System.out.println("\t" + tServidor + ":");
+				System.out.println("\t\t" + fecha + " " + estadistic + " = " + entrada.getValue().get());
+				tServidorAnterior = tServidor;
+			} else {
+				System.out.println("\t\t" + fecha + " " + estadistic + " = " + entrada.getValue().get());
+				tServidorAnterior = tServidor;
+			}
+	    }
 
 		/* Estadísticas de usuarios */
 		System.out.println("\n  Estadísticas de usuarios que han enviado más de "+numMaxMsg+" mensajes:");

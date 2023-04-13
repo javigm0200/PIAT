@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Ponga aquí su nombre, apellidos y DNI
+ * @author Javier González Martínez 06603090C
  *
  */
 public class Trabajador implements Runnable {
@@ -24,7 +24,6 @@ public class Trabajador implements Runnable {
 	private final ConcurrentHashMap <String,AtomicInteger> hmUsuarios;	
 	private final AtomicInteger numTrabajadoresTerminados;
 	
-	private final String msgCorreo = ".*msa.*from: <(([\\w-]+\\.[\\w-]*)@[AZa-z0-9]+(\\.[AZa-z0-9]+)(\\.[A-Za-z]{2,}))";
 	public Trabajador(	File fichero, Pattern pTraza, AtomicInteger lineasCorrectas, AtomicInteger lineasIncorrectas, 
 						ConcurrentHashMap<String, String> hmServidores,ConcurrentHashMap<String, AtomicInteger> hmEstadisticasAgregadas, 
 						ConcurrentHashMap <String,Pattern> hmPatronesEstadisticasAgregadas,ConcurrentHashMap <String,AtomicInteger> hmUsuarios, AtomicInteger numTrabajadoresTerminados) {
@@ -152,16 +151,14 @@ public class Trabajador implements Runnable {
 	private void estadisticasUsuarios(Matcher matcherLinea) {
 		// TODO:
 		//	Ver si la traza se corresponde a una traza que indica que se ha enviado un mensaje
-		final String traza = matcherLinea.group(0);
-		Pattern patron = Pattern.compile(msgCorreo);
-		Matcher comparador = patron.matcher(traza);
-		String userName;
-		final AtomicInteger contadorAnterior;
+		final String correo = ".*msa.*from: <(([\\w-]+\\.[\\w-]*)@[AZa-z0-9]+(\\.[AZa-z0-9]+)(\\.[A-Za-z]{2,}))";
+		Pattern patron = Pattern.compile(correo);
+		Matcher comparador = patron.matcher(matcherLinea.group(0));
+		final AtomicInteger contador;
 		if(comparador.find()){
-			userName=comparador.group(2);
-			contadorAnterior = hmUsuarios.putIfAbsent(userName, new AtomicInteger(1));
-			if(contadorAnterior!=null){
-				contadorAnterior.incrementAndGet();
+			contador = hmUsuarios.putIfAbsent(comparador.group(2), new AtomicInteger(1));
+			if(contador!=null){
+				contador.incrementAndGet();
 			}
 
 		}
